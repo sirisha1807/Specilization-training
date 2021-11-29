@@ -1,0 +1,125 @@
+ assignment of employe with different salary onlt name and age should enter by users
+
+package day6;
+
+import java.util.Scanner;
+import java.util.stream.Stream;
+
+abstract class Emp {
+    String name,desig;
+    int sal,age;
+    Scanner sc=new Scanner(System.in);
+
+    public   Emp()
+    {
+        System.out.println("enter name");
+        name= sc.next();
+        System.out.println("enter age");
+        age= sc.nextInt();
+    }
+    public void disp(){
+        System.out.println("name:"+name);
+        System.out.println("age:" +age);
+        System.out.println("salary:" +sal);
+        System.out.println("designation:" +desig);
+    }
+    public abstract void raise();
+}
+final class Clerk extends Emp{
+    public Clerk(){
+        sal=8000;
+        desig="clerk";
+    }
+    @Override
+    public void raise() {
+        sal+=1000;
+    }
+}
+final class Programmer extends Emp{
+    public Programmer(){
+        sal=20000;
+        desig="Programmer";
+    }
+    public void raise(){
+        sal+=5000;
+    }
+}
+final class Manager extends Emp{
+    public Manager(){
+        sal=25000;
+        desig="Manager";
+    }
+    public void raise(){
+        sal+=7000;
+    }
+}
+class emplo{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+            Emp[] e=new Emp[10];
+                int ch=0,C2=0,i=0;
+                do {
+                    System.out.println("1.create");
+                    System.out.println("2.display");
+                    System.out.println("3.raiseSalary");
+                    System.out.println("4.exit");
+                    System.out.println("enter your choice");
+                    ch= sc.nextInt();
+                    switch (ch){
+                        case 1: do {
+
+                            System.out.println("1.create");
+                            System.out.println("2.display");
+                            System.out.println("3.raiseSalary");
+                            System.out.println("4.exit");
+                            System.out.println("enter your choice");
+                            C2= sc.nextInt();
+                            switch (C2){
+                                case 1:e[i]=new Clerk();
+                                i++;
+                                break;
+                                case 2: e[i]=new Programmer();
+                                i++;
+                                break;
+                                case 3: e[i]=new Manager();
+                                i++;
+                                break;
+                            }
+                        }
+                        while (C2!=4);
+                            break;
+                        case 2:try {
+                            for (Emp x:e){
+                                if (x!=null)
+                                    x.disp();
+                            }
+                        } catch (Exception ex){
+                            System.out.println("no record present");
+                        }
+                        break;
+                        case 3: try {
+                            for (Emp x:e){
+                                if (x!=null)
+                                    x.raise();
+                            }
+                            System.out.println("salary raised");
+                        }catch (Exception ex){
+                            System.out.println(" no record present");
+                        }
+                        break;
+                        case 4:
+                            System.out.println("existing .....");
+                            break;
+                        default:
+                            System.out.println(" invalid choice");
+                    }
+                } while (ch!=4);
+        Stream<String > Emp=Stream.of("sirisha","Sri","sirish","srinu");
+        Emp.filter(s->s.contains("a"))
+                .map(String::toUpperCase)
+                .sorted()
+                .forEach(System.out::println);
+            }
+        }
+
+
